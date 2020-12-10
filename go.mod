@@ -1,4 +1,3 @@
-module github.com/sgs921107/gcommon/v0.1
-
+module github.com/sgs921107/gcommon
 
 go 1.15
