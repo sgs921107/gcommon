@@ -8,7 +8,7 @@
 package test
 
 import (
-	"gcommon"
+	"github.com/sgs921107/gcommon"
 	"testing"
 )
 
