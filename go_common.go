@@ -4,4 +4,4 @@
 	> Mail: xiangcai@gmail.com
 	> Created Time: 2020年12月09日 星期三 19时41分19秒
  ************************************************************************/
-package common
+package go_common
