@@ -5,7 +5,7 @@
 	> Created Time: 2020年12月09日 星期三 19时39分01秒
  ************************************************************************/
 
-package go_common
+package gcommon
 
 import (
 	"bytes"

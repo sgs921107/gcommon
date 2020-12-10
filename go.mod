@@ -1,3 +1,3 @@
-module go_common
+module gcommon
 
 go 1.15

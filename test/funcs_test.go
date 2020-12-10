@@ -8,12 +8,12 @@
 package test
 
 import (
-	"go_common"
+	"gcommon"
 	"testing"
 )
 
 func TestTimeStamp(t *testing.T) {
-	if ret := go_common.TimeStamp(4); ret != 0 {
+	if ret := gcommon.TimeStamp(4); ret != 0 {
 		t.Errorf("TimeStamp(4) = %d, want 0", ret)
 	}
 }
