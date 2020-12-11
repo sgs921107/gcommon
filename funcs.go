@@ -54,6 +54,13 @@ func ReaderToString(reqBody io.Reader) string {
 }
 
 /*
+将time.Duration类型转换为值为秒数的int类型
+*/
+func DurationToIntSecond(duration time.Duration) int {
+	return int(duration) / 1e9
+}
+
+/*
 获取时间戳
 接收一个整形 0-3
 0-秒, 1-毫秒, 2-微妙, 3-纳秒
