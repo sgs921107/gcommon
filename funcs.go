@@ -80,3 +80,14 @@ func TimeStamp(flag int) int64 {
 		return 0
 	}
 }
+
+/*
+提取url的host
+*/
+func FetchUrlHost(Url string) (string, error) {
+	u, err := url.Parse(Url)
+	if err != nil {
+		return "", err
+	}
+	return u.Host, nil
+}

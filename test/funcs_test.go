@@ -16,7 +16,7 @@ import (
 
 func TestTimeStamp(t *testing.T) {
 	if ret := gcommon.TimeStamp(4); ret != 0 {
-		t.Errorf("TimeStamp(4) = %d, want 0", ret)
+		t.Errorf("TimeStamp(4) == %d, want 0", ret)
 	}
 }
 
@@ -38,5 +38,14 @@ func TestDurationToIntSecond(t *testing.T) {
 		if gcommon.DurationToIntSecond(duration) != want {
 			t.Errorf("DurationToIntSecond(%d) != %d, want %d", duration, want, want)
 		}
+	}
+}
+
+func TestFetchUrlHost(t *testing.T) {
+	if ret, err := gcommon.FetchUrlHost("http://www.baidu.com/q=hello"); ret != "www.baidu.com" {
+		t.Errorf(`gcommon.FetchUrlHost("http://www.baidu.com/q=hello") == (%v, %v), want ("www.baidu.com, nil")`, ret, err)
+	}
+	if ret, err := gcommon.FetchUrlHost("http://mail.baidu.com?user=go"); ret != "mail.baidu.com" {
+		t.Errorf(`gcommon.FetchUrlHost("http://www.baidu.com/q=hello") == (%v, %v), want ("mail.baidu.com, nil")`, ret, err)
 	}
 }
