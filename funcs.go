@@ -15,22 +15,31 @@ import (
 	"time"
 )
 
+// TimeStampFlag 定义类型为int
 type TimeStampFlag int
 
 const (
+	// SECOND 0: 秒
 	SECOND TimeStampFlag = iota
+	// MILLISECOND 1: 毫秒
 	MILLISECOND
+	// MICROSECOND 2: 微秒
 	MICROSECOND
+	// NANOSECOND 3: 纳秒
 	NANOSECOND
 )
 
-// convert type map to []byte
+/*
+MapToBytes convert type map to []byte
+*/
 func MapToBytes(data map[string]string) []byte {
 	reader := MapToReader(data)
 	return ReaderToBytes(reader)
 }
 
-// convert type map to io.reader
+/*
+MapToReader convert type map to io.reader
+*/
 func MapToReader(data map[string]string) io.Reader {
 	form := url.Values{}
 	for k, v := range data {
@@ -39,14 +48,18 @@ func MapToReader(data map[string]string) io.Reader {
 	return strings.NewReader(form.Encode())
 }
 
-// convert type io.reader to []byte
+/*
+ReaderToBytes convert type io.reader to []byte
+*/
 func ReaderToBytes(reader io.Reader) []byte {
 	buffer := new(bytes.Buffer)
 	buffer.ReadFrom(reader)
 	return buffer.Bytes()
 }
 
-// convert type io.reader to string
+/*
+ReaderToString convert type io.reader to string
+*/
 func ReaderToString(reqBody io.Reader) string {
 	buffer := new(bytes.Buffer)
 	buffer.ReadFrom(reqBody)
@@ -54,14 +67,14 @@ func ReaderToString(reqBody io.Reader) string {
 }
 
 /*
-将time.Duration类型转换为值为秒数的int类型
+DurationToIntSecond 将time.Duration类型转换为值为秒数的int类型
 */
 func DurationToIntSecond(duration time.Duration) int {
 	return int(duration) / 1e9
 }
 
 /*
-获取时间戳
+TimeStamp 获取时间戳
 接收一个整形 0-3
 0-秒, 1-毫秒, 2-微妙, 3-纳秒
 */
@@ -82,10 +95,10 @@ func TimeStamp(flag int) int64 {
 }
 
 /*
-提取url的host
+FetchURLHost 提取url的host
 */
-func FetchUrlHost(Url string) (string, error) {
-	u, err := url.Parse(Url)
+func FetchURLHost(URL string) (string, error) {
+	u, err := url.Parse(URL)
 	if err != nil {
 		return "", err
 	}

@@ -42,10 +42,10 @@ func TestDurationToIntSecond(t *testing.T) {
 }
 
 func TestFetchUrlHost(t *testing.T) {
-	if ret, err := gcommon.FetchUrlHost("http://www.baidu.com/q=hello"); ret != "www.baidu.com" {
+	if ret, err := gcommon.FetchURLHost("http://www.baidu.com/q=hello"); ret != "www.baidu.com" {
 		t.Errorf(`gcommon.FetchUrlHost("http://www.baidu.com/q=hello") == (%v, %v), want ("www.baidu.com, nil")`, ret, err)
 	}
-	if ret, err := gcommon.FetchUrlHost("http://mail.baidu.com?user=go"); ret != "mail.baidu.com" {
+	if ret, err := gcommon.FetchURLHost("http://mail.baidu.com?user=go"); ret != "mail.baidu.com" {
 		t.Errorf(`gcommon.FetchUrlHost("http://www.baidu.com/q=hello") == (%v, %v), want ("mail.baidu.com, nil")`, ret, err)
 	}
 }
