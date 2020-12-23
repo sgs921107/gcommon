@@ -8,11 +8,8 @@
 package gcommon
 
 import (
-	"bytes"
-	"io"
-	"net/url"
-	"strings"
 	"time"
+	"net/url"
 )
 
 // TimeStampFlag 定义类型为int
@@ -28,50 +25,6 @@ const (
 	// NANOSECOND 3: 纳秒
 	NANOSECOND
 )
-
-/*
-MapToBytes convert type map to []byte
-*/
-func MapToBytes(data map[string]string) []byte {
-	reader := MapToReader(data)
-	return ReaderToBytes(reader)
-}
-
-/*
-MapToReader convert type map to io.reader
-*/
-func MapToReader(data map[string]string) io.Reader {
-	form := url.Values{}
-	for k, v := range data {
-		form.Add(k, v)
-	}
-	return strings.NewReader(form.Encode())
-}
-
-/*
-ReaderToBytes convert type io.reader to []byte
-*/
-func ReaderToBytes(reader io.Reader) []byte {
-	buffer := new(bytes.Buffer)
-	buffer.ReadFrom(reader)
-	return buffer.Bytes()
-}
-
-/*
-ReaderToString convert type io.reader to string
-*/
-func ReaderToString(reqBody io.Reader) string {
-	buffer := new(bytes.Buffer)
-	buffer.ReadFrom(reqBody)
-	return buffer.String()
-}
-
-/*
-DurationToIntSecond 将time.Duration类型转换为值为秒数的int类型
-*/
-func DurationToIntSecond(duration time.Duration) int {
-	return int(duration) / 1e9
-}
 
 /*
 TimeStamp 获取时间戳

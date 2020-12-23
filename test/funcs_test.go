@@ -49,3 +49,30 @@ func TestFetchUrlHost(t *testing.T) {
 		t.Errorf(`gcommon.FetchUrlHost("http://www.baidu.com/q=hello") == (%v, %v), want ("mail.baidu.com, nil")`, ret, err)
 	}
 }
+
+func TestMapSSToSA(t *testing.T) {
+	var data = make(map[string]string)
+	data["test"] = "test_val"
+	newData := gcommon.MapSSToSA(data)
+	if len(newData) == 0 {
+		t.Error("len(newData) == 0, want 1")
+	}
+}
+
+func TestMapSAToSS(t *testing.T) {
+	key, val := "test", "test_val"
+	var data = make(map[string]interface{})
+	data[key] = val
+	newData, ok := gcommon.MapSAToSS(data)
+	if !ok {
+		t.Error("ok == false, want true")
+	}
+	if newData[key] != val {
+		t.Errorf(`newData["%s"] == %s, want %s`, key, newData[key], val)
+	}
+	data[key] = 1
+	newData, ok = gcommon.MapSAToSS(data)
+	if ok {
+		t.Error("ok == true, want false")
+	}
+}
