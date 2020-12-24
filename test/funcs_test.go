@@ -12,6 +12,7 @@ import (
 	"math/rand"
 	"testing"
 	"time"
+	"os"
 )
 
 func TestTimeStamp(t *testing.T) {
@@ -74,5 +75,13 @@ func TestMapSAToSS(t *testing.T) {
 	newData, ok = gcommon.MapSAToSS(data)
 	if ok {
 		t.Error("ok == true, want false")
+	}
+}
+
+func TestLoadEnvFiles(t *testing.T) {
+	gcommon.LoadEnvFiles()
+	val := os.Getenv("TESTENV")
+	if val != "hello go" {
+		t.Errorf(`os.Getenv("TESTENV") == %s, want "hello go"`, val)
 	}
 }

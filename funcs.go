@@ -8,6 +8,7 @@
 package gcommon
 
 import (
+	"os"
 	"time"
 	"net/url"
 )
@@ -56,4 +57,12 @@ func FetchURLHost(URL string) (string, error) {
 		return "", err
 	}
 	return u.Host, nil
+}
+
+/*
+PathIsExist 判断路径是否存在
+*/
+func PathIsExist(path string) bool {
+	_, err := os.Stat(path)
+	return os.IsExist(err)
 }
