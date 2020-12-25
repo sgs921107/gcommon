@@ -6,7 +6,29 @@ import (
 	"bytes"
 	"strings"
 	"net/url"
+	"errors"
+	"reflect"
 )
+
+// ErrorStructToMapSA item转map失败
+var ErrorStructToMapSA = errors.New("ValueError: item must be a struct")
+
+// MapSA 别名
+type MapSA = map[string]interface{}
+
+// StructToMapSA item to map
+func StructToMapSA(item interface{}) (MapSA, error) {
+	t := reflect.TypeOf(item)
+	if t.Kind() != reflect.Struct {
+		return nil, ErrorStructToMapSA
+	}
+	data := make(MapSA)
+	d := reflect.ValueOf(item)
+	for i := 0; i < d.NumField(); i++ {
+		data[t.Field(i).Name] = d.Field(i).Interface()
+	}
+	return data, nil
+}
 
 /*
 MapToBytes convert type map to []byte
