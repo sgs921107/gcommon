@@ -10,7 +10,15 @@ import (
 	"os"
 	"strings"
 
+	"github.com/timest/env"
 	"github.com/joho/godotenv"
+)
+
+var (
+	// EnvFill env Fill func
+	EnvFill = env.Fill
+	// EnvIgnorePrefix  env IgnorePrefix func
+	EnvIgnorePrefix = env.IgnorePrefix
 )
 
 func readFile(filename string) (envMap map[string]string, err error) {

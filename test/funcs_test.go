@@ -8,11 +8,12 @@
 package test
 
 import (
-	"github.com/sgs921107/gcommon"
-	"math/rand"
-	"testing"
-	"time"
 	"os"
+	"time"
+	"testing"
+	"math/rand"
+
+	"github.com/sgs921107/gcommon"
 )
 
 func TestTimeStamp(t *testing.T) {
@@ -83,5 +84,18 @@ func TestLoadEnvFiles(t *testing.T) {
 	val := os.Getenv("TESTENV")
 	if val != "hello go" {
 		t.Errorf(`os.Getenv("TESTENV") == %s, want "hello go"`, val)
+	}
+}
+
+func TestEnvFill(t *testing.T) {
+	type cnf struct {
+		TestEnv string
+	}
+	c := &cnf{}
+	gcommon.EnvIgnorePrefix()
+	gcommon.EnvFill(c)
+	val := c.TestEnv
+	if val != "hello go" {
+		t.Errorf(`FillEnvError: c.TestEnv == "%s", want "hello go"`, val)
 	}
 }
