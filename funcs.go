@@ -8,9 +8,9 @@
 package gcommon
 
 import (
+	"net/url"
 	"os"
 	"time"
-	"net/url"
 )
 
 // TimeStampFlag 定义类型为int
@@ -64,5 +64,5 @@ PathIsExist 判断路径是否存在
 */
 func PathIsExist(path string) bool {
 	_, err := os.Stat(path)
-	return os.IsExist(err)
+	return !os.IsNotExist(err)
 }
