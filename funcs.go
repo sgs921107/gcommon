@@ -66,3 +66,26 @@ func PathIsExist(path string) bool {
 	_, err := os.Stat(path)
 	return !os.IsNotExist(err)
 }
+
+/*
+JoinStrings 拼接字符串
+connector 连接符
+strings 待拼接的字符串
+*/
+func JoinStrings(connector string, strings ...string) string {
+	length := len(strings)
+	if length == 0 {
+		return ""
+	}
+	if length == 1 {
+		return strings[0]
+	}
+	var ret string
+	for index, item := range strings {
+		ret += item
+		if index+1 < length {
+			ret += connector
+		}
+	}
+	return ret
+}

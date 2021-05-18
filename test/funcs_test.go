@@ -8,10 +8,10 @@
 package test
 
 import (
-	"os"
-	"time"
-	"testing"
 	"math/rand"
+	"os"
+	"testing"
+	"time"
 
 	"github.com/sgs921107/gcommon"
 )
@@ -97,5 +97,17 @@ func TestEnvFill(t *testing.T) {
 	val := c.TestEnv
 	if val != "hello go" {
 		t.Errorf(`FillEnvError: c.TestEnv == "%s", want "hello go"`, val)
+	}
+}
+
+func TestJoinStrings(t *testing.T) {
+	if ret := gcommon.JoinStrings("_"); ret != "" {
+		t.Errorf(`gcommon.JoinStrings("_") == %s, want ""`, ret)
+	}
+	if ret := gcommon.JoinStrings("_", "hello"); ret != "hello" {
+		t.Errorf(`gcommon.JoinStrings("_", "hello") == %s, want "hello"`, ret)
+	}
+	if ret := gcommon.JoinStrings("_", "hello", "world"); ret != "hello_world" {
+		t.Errorf(`gcommon.JoinStrings("_", "hello", "world") == %s, want "hello_world"`, ret)
 	}
 }
