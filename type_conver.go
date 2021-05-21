@@ -1,13 +1,13 @@
 package gcommon
 
 import (
-	"io"
-	"time"
 	"bytes"
-	"strings"
-	"net/url"
 	"errors"
+	"io"
+	"net/url"
 	"reflect"
+	"strings"
+	"time"
 )
 
 // ErrorStructToMapSA item转map失败
@@ -79,7 +79,7 @@ func MapSAToSS(data map[string]interface{}) (map[string]string, bool) {
 	var newData = make(map[string]string, len(data))
 	for k, v := range data {
 		val, ok := v.(string)
-		if  !ok {
+		if !ok {
 			return nil, false
 		}
 		newData[k] = val

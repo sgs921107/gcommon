@@ -99,15 +99,3 @@ func TestEnvFill(t *testing.T) {
 		t.Errorf(`FillEnvError: c.TestEnv == "%s", want "hello go"`, val)
 	}
 }
-
-func TestJoinStrings(t *testing.T) {
-	if ret := gcommon.JoinStrings("_"); ret != "" {
-		t.Errorf(`gcommon.JoinStrings("_") == %s, want ""`, ret)
-	}
-	if ret := gcommon.JoinStrings("_", "hello"); ret != "hello" {
-		t.Errorf(`gcommon.JoinStrings("_", "hello") == %s, want "hello"`, ret)
-	}
-	if ret := gcommon.JoinStrings("_", "hello", "world"); ret != "hello_world" {
-		t.Errorf(`gcommon.JoinStrings("_", "hello", "world") == %s, want "hello_world"`, ret)
-	}
-}
