@@ -73,9 +73,9 @@ func TestMapSAToSS(t *testing.T) {
 		t.Errorf(`newData["%s"] == %s, want %s`, key, newData[key], val)
 	}
 	data[key] = 1
-	newData, ok = gcommon.MapSAToSS(data)
+	_, ok = gcommon.MapSAToSS(data)
 	if ok {
-		t.Error("ok == true, want false")
+		t.Errorf("ok == true, want false")
 	}
 }
 
