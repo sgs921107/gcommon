@@ -79,6 +79,12 @@ func TestMapSAToSS(t *testing.T) {
 	}
 }
 
+func TestReadFileEnv(t *testing.T) {
+	if envMap, err := gcommon.ReadFileEnv(".env"); err != nil || envMap["TestEnv"] != "hello go" {
+		t.Errorf("want (envMap['TestEnv'], err) == ('hello go', nil), have (%s, %v)", envMap["TestEnv"], err)
+	}
+}
+
 func TestLoadEnvFiles(t *testing.T) {
 	gcommon.LoadEnvFiles()
 	val := os.Getenv("TESTENV")
